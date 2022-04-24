@@ -7,9 +7,13 @@
 static void read(const FileNode& node, Settings& x, const Settings& default_value = Settings())
 {
     if(node.empty())
+    {
         x = default_value;
+    }
     else
+    {
         x.read(node);
+    }
 }
 
 int main(int argc, const char * argv[])
@@ -21,7 +25,7 @@ int main(int argc, const char * argv[])
     bool chess_flag(false); // flag for calibration
     Proc *obj = new Proc;
     Settings *s = new Settings;
-    
+
     std::string inputSettingsFile = "../config/wizard.xml";
     obj -> base_path = "../out/";
     obj -> imagelist_path = obj -> base_path + "images/image_list.xml";
@@ -32,7 +36,7 @@ int main(int argc, const char * argv[])
     std::string ini_calib_image_path = obj -> base_path + "images/ini_calib/";
     s->input = obj -> imagelist_path;
     s->outputFileName = obj -> base_path + "out_camera_data.xml";
-    
+
     std::cout << "Please choose the mode. (0: initial images capture, 1: show next pose, 2: calibrate existing images) " <<std::endl;
     std::cin >> mode_num;
 
@@ -59,7 +63,7 @@ int main(int argc, const char * argv[])
         {
             keyNum = cv::waitKey(5);
             if(!(obj -> controlFrame(keyNum))) break; // Show frame
-            
+
             if(mode_num == 1) // Show the next pose
             {
                 obj -> showNextPose();
@@ -91,7 +95,7 @@ int main(int argc, const char * argv[])
         }
         cv::destroyAllWindows();
     }
-    
+
     // Camera calibration using OpenCV
     FileStorage fs(inputSettingsFile, FileStorage::READ); // Read the settings
     if (!fs.isOpened())
@@ -101,19 +105,19 @@ int main(int argc, const char * argv[])
     }
     fs["Settings"] >> *s;
     fs.release();// close Settings file
-    
+
     Calib *calib = new Calib;
     calib -> base_path = obj -> base_path;
     // Copy the setting information to the calibration class
     calib -> readSettings(*s);
     // Calibrate the camera using the captured images
     calib -> cameraCalib();
-    
+
     cv::destroyAllWindows();
     std::cout << std::endl;
     delete obj;
     delete calib;
     delete s;
-    
+
     return 0;
 }

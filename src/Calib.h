@@ -6,9 +6,11 @@
 
 #ifndef Calib_h
 #define Calib_h
+
 #include "setting.h"
 
 enum { DETECTION = 0, CAPTURING = 1, CALIBRATED = 2 };
+
 class Calib
 {
 private:
@@ -21,7 +23,7 @@ private:
     clock_t prevTimestamp = 0;
     Scalar RED, GREEN;
     const char ESC_KEY = 27;
-    
+
     // Print camera parameters to the output file
     void saveCameraParams( Settings&, Size&, Mat&, Mat&,
                           const vector<Mat>&, const vector<Mat>&,
@@ -38,12 +40,12 @@ private:
                                             const vector<Mat>&, const vector<Mat>&,
                                             const Mat&, const Mat&,
                                             vector<float>&);
-    
+
 public:
     std::string base_path;
     Calib();
 //    ~Calib();
-    bool readSettings(Settings);
+    bool readSettings(const Settings&);
     void cameraCalib();
 };
 

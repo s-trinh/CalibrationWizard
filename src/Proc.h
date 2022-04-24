@@ -1,26 +1,20 @@
 //
 //  Proc.h
-//  
+//
 //  Copyright © 2019 Songyou Peng. All rights reserved.
 //
-
-
-
-
 #ifndef header_h
 #define header_h
-
 
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include <ctime>
-#include <opencv2/core/core.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/calib3d/calib3d.hpp>
-#include <opencv2/highgui/highgui.hpp>
-
+#include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/calib3d.hpp>
+#include <opencv2/highgui.hpp>
 
 class Proc
 {
@@ -38,11 +32,11 @@ private:
     // std::string output_path;
     // std::string nextpose_extr_paths;
     std::vector<cv::Point3f> corner_points;
-    
+
     bool found;
     int counting = 0;
     std::vector<cv::Point2f> pointBuf;
-    
+
 public:
     std::string base_path;
     std::string imagelist_path;
@@ -65,7 +59,5 @@ public:
     void showChessboard();
     void extractInfo(std::string);
 };
-
-
 
 #endif /* header_h */
