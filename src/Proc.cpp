@@ -12,7 +12,7 @@ Proc::Proc()
 void Proc::openCamera()
 {
     // set the size of frame to 640*480
-    if(cap.open(0))
+    if(cap.open(4)) //TODO: option to select the camera device
     {
         cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
         cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
@@ -205,7 +205,7 @@ int Proc::update_captureIndex()
 void Proc::captureImage(std::string path, int idx)
 {
     char imagename[200];
-    sprintf(imagename,"%.3d.jpg", idx);
+    sprintf(imagename,"%.3d.png", idx);
     curr_image_path = path + (std::string)imagename;
     cv::imwrite( curr_image_path, frame_save);
     std::cout << "Capture image " << idx << " successfully." << std::endl;

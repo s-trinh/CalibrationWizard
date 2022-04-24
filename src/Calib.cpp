@@ -48,6 +48,9 @@ void Calib::cameraCalib()
         bool blinkOutput = false;
 
         view = s.nextImage();
+        //TODO: debug
+        std::cout << "view: " << view.rows << "x" << view.cols << std::endl;
+        std::cout << "s.nrFrames: " << s.nrFrames << std::endl;
 
         //-----  If no more image, or got enough, then stop calibration and show result -------------
         if( mode == CAPTURING && imagePoints.size() >= (unsigned)s.nrFrames )

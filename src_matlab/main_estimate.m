@@ -14,7 +14,9 @@ close all;
 clear;
 
 %% Set parameters
-filepath = '../out/';
+% filepath = '../out/';
+% TODO:
+filepath = '../build/bin/out/';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 autoCorr_flag = 1;          % 1: consider autocorretion matrix  0: otherise
